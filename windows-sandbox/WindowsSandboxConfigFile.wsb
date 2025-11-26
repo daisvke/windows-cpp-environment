@@ -1,0 +1,39 @@
+<!--
+  Windows Sandbox Configuration (.wsb)
+  - Maps host folder for scripts/files
+  - Disables networking
+  - Runs setup-lang.ps1
+  - Opens Explorer and PowerShell in 'example-project'
+-->
+
+<Configuration>
+
+  <!-- Mapped folder (host ↔ sandbox) -->
+  <MappedFolders>
+    <MappedFolder>
+      <HostFolder>C:\path\to\my\host-folder</HostFolder>
+      <SandboxFolder>C:\Users\WDAGUtilityAccount\Desktop\SandboxFolder</SandboxFolder>
+      <ReadOnly>false</ReadOnly>
+    </MappedFolder>
+  </MappedFolders>
+
+  <!-- Networking (Enable or Disable) -->
+  <Networking>Disable</Networking>
+
+  <!-- LogonCommand runs automatically when Sandbox starts -->
+  <LogonCommand>
+
+    <!--
+      PowerShell script chain:
+        1. Runs setup-lang.ps1
+        2. Waits 2s
+        3. Opens Explorer in 'example-project'
+        4. Opens PowerShell in same folder
+
+      (Do not insert comments inside the <Command> element — it will break execution)
+    -->
+    <Command>powershell -NoProfile -ExecutionPolicy Bypass -Command "&amp; 'C:\Users\WDAGUtilityAccount\Desktop\SandboxFolder\setup-lang.ps1'; Start-Sleep -Seconds 2; Start-Process explorer.exe 'C:\Users\WDAGUtilityAccount\Desktop\SandboxFolder'; Start-Process powershell.exe -ArgumentList '-NoExit','-Command','cd \"C:\Users\WDAGUtilityAccount\Desktop\SandboxFolder\example-project\"'"</Command>
+
+  </LogonCommand>
+
+</Configuration>

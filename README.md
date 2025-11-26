@@ -46,6 +46,10 @@ This README explains how to set up a Windows development environment for C and C
 
 3. **Launch Developer Command Prompt**:
 
+<p align="center">
+  <img src="screenshots/vs-start-menu.png" width="400">
+</p>
+
    * After installation, search for **“x64 Native Tools Command Prompt for VS”** in Start Menu.
    * This sets all environment variables, including for `nmake`.
 
@@ -60,6 +64,10 @@ This README explains how to set up a Windows development environment for C and C
 ---
 
 ### Add right-click “Open VS Build Tools here”
+
+<p align="center">
+  <img src="screenshots/vs-open-here.png" width="330">
+</p>
 
 1. Open Notepad
 2. Paste the following (adjust path if needed):
@@ -103,10 +111,13 @@ The integrated terminal in VS Code will inherit the environment (`cl`, `nmake`, 
 
 #### Method 2
 
+<p align="center">
+  <img src="screenshots/vs-vscode.png" width="600">
+</p>
+
 Configure VS Code to run **cmd.exe** with the environment set by **`vcvars64.bat`**:
 
-1. Open Settings:
-   - Go to **File > Preferences > Settings** (or `Ctrl + ,`)
+1. Open Settings: go to **File > Preferences > Settings** (or `Ctrl + ,`)
 2. Search for **Integrated Terminal**
 3. Edit `settings.json` to add a custom terminal profile:
 
@@ -165,9 +176,13 @@ function gcmsg { git commit -m $args }
 
 ## Setting up a Windows Sandbox for Safe Testing
 
+<p align="center">
+  <img src="screenshots/windows-sandbox.png" width="700">
+</p>
+
 When developing or testing programs that should not run on your main system, it is recommended to use an isolated environment. Windows Sandbox provides a disposable virtual machine that resets every time it closes.
 
-The repository includes two files that demonstrate how to prepare such an environment:
+The repository includes two files in the `windows-sandbox` folder that demonstrate how to prepare such an environment:
 
 - `WindowsSandboxConfigFile.wsb`  
 - `setup-lang.ps1`
