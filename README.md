@@ -10,7 +10,7 @@ This README explains how to set up a Windows development environment for C and C
   - [Install Build Tools (CL, NMAKE)](#install-build-tools-cl-nmake)  
   - [Add right-click “Open VS Build Tools here”](#add-right-click-open-vs-build-tools-here)  
   - [How to use `nmake` in VS Code](#how-to-use-nmake-in-vs-code)  
-  - [`nmake` and cmd.exe](#nmake-and-cmdexe)  
+  - [Differences Between `nmake` and `make`](#differences-between-nmake-and-make)
   - [Setting up PowerShell](#setting-up-powershell)  
 - [Setting up a Windows Sandbox for Safe Testing](#setting-up-a-windows-sandbox-for-safe-testing)  
   - [Launching Windows Sandbox](#launching-windows-sandbox)  
@@ -139,10 +139,11 @@ You can now launch `cmd with VS` as a terminal profile inside VS Code.
 
 ---
 
-### `nmake` and cmd.exe
+### Differences Between `nmake` and `make`
 
-- `nmake` uses **cmd.exe syntax**, not PowerShell.  
+- NMake uses **cmd.exe syntax**, not PowerShell.  
 - Commands like `del` and `copy` work in Makefiles, but PowerShell commands like `Remove-Item` will not.
+- NMake does not support the `.PHONY` directive, which is commonly used in make to declare targets that do not correspond to actual files. Using `.PHONY` in NMake will not compile or execute as intended. 
 
 ---
 
