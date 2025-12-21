@@ -11,6 +11,7 @@ This README explains how to set up a Windows development environment for C and C
   - [Add right-click “Open VS Build Tools here”](#add-right-click-open-vs-build-tools-here)  
   - [How to use `nmake` in VS Code](#how-to-use-nmake-in-vs-code)  
   - [Differences Between `nmake` and `make`](#differences-between-nmake-and-make)
+  - [Setting up cmd.exe](#setting-up-cmdexe)
   - [Setting up PowerShell](#setting-up-powershell)  
 - [Setting up a Windows Sandbox for Safe Testing](#setting-up-a-windows-sandbox-for-safe-testing)  
   - [Launching Windows Sandbox](#launching-windows-sandbox)  
@@ -144,6 +145,45 @@ You can now launch `cmd with VS` as a terminal profile inside VS Code.
 - NMake uses **cmd.exe syntax**, not PowerShell.  
 - Commands like `del` and `copy` work in Makefiles, but PowerShell commands like `Remove-Item` will not.
 - NMake does not support the `.PHONY` directive, which is commonly used in make to declare targets that do not correspond to actual files. Using `.PHONY` in NMake will not compile or execute as intended. 
+
+---
+
+### Setting up cmd.exe
+
+In `cmd.exe`, you cannot create aliases in the same way as you would in PowerShell or other Unix-like shells. However, you can create **batch files** or use the `doskey` command to simulate aliases. Here’s how to do it:
+
+#### Using `doskey` for Aliases
+
+You can use the `doskey` command to create temporary aliases during your `cmd` session.
+
+1. **Create Aliases:**
+   ```cmd
+   doskey gst=git status
+   doskey gp=git push
+   doskey ga=git add $*
+   doskey gcmsg=git commit -m $*
+   ```
+
+2. **Using the Aliases:**
+   - Now, you can use `gst`, `gp`, `ga`, and `gcmsg` in your `cmd.exe` session.
+
+#### Making Aliases Persistent
+
+To make these aliases available every time you open `cmd.exe`, you can create a batch file with your `doskey` commands and execute it every time.
+
+1. **Create a Batch File:**
+   Create a file named `aliases.cmd` (`cmd-aliases.cmd` in this repo) and add your `doskey` commands:
+
+   ```cmd
+   @echo off
+   doskey gst=git status
+   doskey gp=git push
+   doskey ga=git add $*
+   doskey gcmsg=git commit -m $*
+   ```
+
+2. **Execute the Batch File:**
+   You can run `aliases.cmd` each time you open a new `cmd.exe` window.
 
 ---
 
