@@ -27,7 +27,7 @@
       PowerShell script chain:
         1. Runs setup-lang.ps1
         2. Waits 2s
-        3. Opens Explorer in 'example-project'
+        3. Opens Explorer in 'SandboxFolder'
         4. Opens PowerShell in same folder
 
       (Do not insert comments inside the <Command> element — it will break execution)
