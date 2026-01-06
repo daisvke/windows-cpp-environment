@@ -6,17 +6,86 @@ This README explains how to set up a Windows development environment for C and C
 
 ### Table of Contents
 
-- [Setting up Windows](#setting-up-windows)  
+  - [Installing a Windows 11 Virtual Machine](#installing-a-windows-11-virtual-machine-virtualbox)
+  - [Setting up Windows](#setting-up-windows)  
   - [Install Build Tools (CL, NMAKE)](#install-build-tools-cl-nmake)  
   - [Add right-click “Open VS Build Tools here”](#add-right-click-open-vs-build-tools-here)  
   - [How to use `nmake` in VS Code](#how-to-use-nmake-in-vs-code)  
   - [Differences Between `nmake` and `make`](#differences-between-nmake-and-make)
   - [Setting up cmd.exe](#setting-up-cmdexe)
   - [Setting up PowerShell](#setting-up-powershell)  
-- [Setting up a Windows Sandbox for Safe Testing](#setting-up-a-windows-sandbox-for-safe-testing)  
+  - [Setting up a Windows Sandbox for Safe Testing](#setting-up-a-windows-sandbox-for-safe-testing)  
   - [Launching Windows Sandbox](#launching-windows-sandbox)  
   - [Windows Sandbox configuration (`WindowsSandboxConfigFile.wsb`)](#windows-sandbox-configuration-windowssandboxconfigfilewsb)  
   - [Startup initialization script (`setup-lang.ps1`)](#startup-initialization-script-setup-langps1)  
+
+---
+
+## Installing a Windows 11 Virtual Machine (VirtualBox)
+
+This section explains how to install a Windows 11 virtual machine for testing purposes.
+The instructions are written with [42 school](https://42.fr/en/homepage/) environments in mind (specific paths and storage constraints), but they can be adapted to any system by changing paths and resource limits.
+
+### Download Windows 11 ISO
+
+1. Go to the official Microsoft page:
+   [https://info.microsoft.com/ww-landing-windows-11-enterprise.html](https://info.microsoft.com/ww-landing-windows-11-enterprise.html)
+
+2. Fill in the form and click **“Download now”**.
+
+3. Download the **Windows 11 Enterprise ISO**.
+
+---
+
+### Create the Virtual Machine (VirtualBox)
+
+1. Open **VirtualBox** and click **New**.
+2. Set the VM name (e.g. `Windows11`).
+3. Set the machine folder to:
+
+```
+/home/goinfre/<login>/myFolder
+```
+
+**Notes (42 specific):**
+
+* `goinfre` is a **local partition** (fast).
+* `sgoinfre` is **network-mounted** (slower).
+* => Install the VM on `goinfre` first, then copy it to `sgoinfre` later if you need persistence.
+
+4. Set the disk size to **29 GB**
+   (larger sizes may cause freezes on 42 machines).
+
+5. Memory (RAM): **12 GB**
+
+6. CPUs: **17**
+
+![virtual box dashboard](screenshots/vbox-hardware.png)
+![virtual box dashboard](screenshots/vbox-dashboard.png)
+
+---
+
+### First Boot and ISO Attachment
+
+1. VM starts.
+2. You will see the message:
+
+```
+Press any key to boot from CD or DVD...
+```
+
+Do **nothing** — just wait.
+
+3. VirtualBox will then prompt you to select a startup disk.
+4. Choose **Yes**, then select the Windows 11 ISO you downloaded.
+5. Continue with the installation.
+
+---
+
+### Installation Completion
+
+* Windows will install normally until it reaches **100%**.
+* The virtual machine will automatically **restart**.
 
 ---
 
@@ -33,7 +102,7 @@ This README explains how to set up a Windows development environment for C and C
 
 2. **Install only required components**:
 
-   * Run the installer.
+   * Run the installer.10854
    * Select the **“desktop development with C++”** workload.
    * Ensure these components are checked:
      * MSVC v142 or later (C++ build tools)
