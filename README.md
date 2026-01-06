@@ -84,9 +84,10 @@ Do **nothing** — just wait.
 
 ### Installation Completion
 
-* Windows will install normally until it reaches **100%**.
-* The virtual machine will automatically **restart**.
-* [Install Git](https://git-scm.com/install/windows)
+- Windows will install normally until it reaches **100%**.
+- The virtual machine will automatically **restart**.
+- [Install Git](https://git-scm.com/install/windows)
+- [Install VS Code](https://code.visualstudio.com/docs/setup/windows#_install-vs-code-on-windows)
 ---
 
 ## Setting up Windows
