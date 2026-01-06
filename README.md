@@ -187,9 +187,14 @@ The integrated terminal in VS Code will inherit the environment (`cl`, `nmake`, 
 
 Configure VS Code to run **cmd.exe** with the environment set by **`vcvars64.bat`**:
 
-1. Open Settings: go to **File > Preferences > Settings** (or `Ctrl + ,`)
-2. Search for **Integrated Terminal**
-3. Edit `settings.json` to add a custom terminal profile:
+1. Look for the `vcvars64.bat` file in `C:\Program Files (x86)\Microsoft Visual Studio`
+2. Copy its full path. The exact location depends on your Visual Studio version, not the Windows version.<br />
+   Common examples:
+   - Windows 10 Pro : `"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"`
+   - Windows 11 Entreprise : `"C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"`
+3. Open Settings: go to **File > Preferences > Settings** (or `Ctrl + ,`)
+4. Search for **Integrated Terminal**
+5. Edit `settings.json` to add a custom terminal profile:
 
 ```json
 "terminal.integrated.profiles.windows": {
@@ -197,7 +202,7 @@ Configure VS Code to run **cmd.exe** with the environment set by **`vcvars64.bat
         "path": "C:\\Windows\\System32\\cmd.exe",
         "args": [
             "/k",
-            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat" // Replace with the path on your system
         ],
         "icon": "terminal"
     }
