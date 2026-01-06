@@ -6,7 +6,7 @@ This README explains how to set up a Windows development environment for C and C
 
 ### Table of Contents
 
-  - [Installing a Windows 11 Virtual Machine](#installing-a-windows-11-virtual-machine-virtualbox)
+  - [Installing a Windows 11 Virtual Machine](#installing-a-windows-11-virtual-machine-virtualbox-no-external-disk)
   - [Setting up Windows](#setting-up-windows)  
   - [Install Build Tools (CL, NMAKE)](#install-build-tools-cl-nmake)  
   - [Add right-click “Open VS Build Tools here”](#add-right-click-open-vs-build-tools-here)  
@@ -21,9 +21,9 @@ This README explains how to set up a Windows development environment for C and C
 
 ---
 
-## Installing a Windows 11 Virtual Machine (VirtualBox)
+## Installing a Windows 11 Virtual Machine (VirtualBox, no external disk)
 
-This section explains how to install a Windows 11 virtual machine for testing purposes.
+This section explains how to install a Windows 11 virtual machine for testing purposes without any external disk.
 The instructions are written with [42 school](https://42.fr/en/homepage/) environments in mind (specific paths and storage constraints), but they can be adapted to any system by changing paths and resource limits.
 
 ### Download Windows 11 ISO
@@ -86,7 +86,7 @@ Do **nothing** — just wait.
 
 * Windows will install normally until it reaches **100%**.
 * The virtual machine will automatically **restart**.
-
+* [Install Git](https://git-scm.com/install/windows)
 ---
 
 ## Setting up Windows
