@@ -37,9 +37,9 @@ This README explains how to set up a Windows development environment for C and C
    * Select the **“desktop development with C++”** workload.
    * Ensure these components are checked:
      * MSVC v142 or later (C++ build tools)
-     * Windows 10 SDK
+     * Windows 10/11 SDK
      * **C++ CMake tools for Windows**
-     * **Windows SDK for Windows 10**
+     * **Windows SDK for Windows 10/11**
    * Click Install.
 
   If Microsoft.VisualCpp.Redist.14 installation fails, follow the steps on:
@@ -269,3 +269,4 @@ The PowerShell script referenced by the `.wsb` file runs automatically when the 
 - Preparing a reproducible environment before testing  
 
 You can replace its content with any initialization logic needed for your own environment.
+
