@@ -1,8 +1,6 @@
 # PowerShell script to install French, Japanese and English (United Kingdom) keyboards
-# Log file is generated at $log
 
-$log = "C:\Users\WDAGUtilityAccount\Desktop\SandboxFolder\setup-log.txt"
-"=== Script started $(Get-Date) ===" | Out-File -FilePath $log -Encoding utf8
+$log = "C:\Users\WDAGUtilityAccount\Desktop\WindowsSandbox\setup-log.txt"
 
 try {
     # Create language list
@@ -14,7 +12,7 @@ try {
     "Languages added manually: fr-FR, ja-JP, en-GB" | Out-File -FilePath $log -Append
 }
 catch {
-    "Error during language list setup: $($_.Exception.Message)" | Out-File -FilePath $log -Append
+    "Error during language list setup: $($_.Exception.Message)" | Out-File -FilePath $log -Encoding utf8 -Append
 }
 
 try {
@@ -22,11 +20,11 @@ try {
         Set-WinUILanguageOverride -Language "fr-FR"
         "UI language override set to fr-FR" | Out-File -FilePath $log -Append
     } else {
-        "Set-WinUILanguageOverride not available" | Out-File -FilePath $log -Append
+        "Set-WinUILanguageOverride not available" | Out-File -FilePath $log -Encoding utf8 -Append
     }
 }
 catch {
-    "Error during UI language setup: $($_.Exception.Message)" | Out-File -FilePath $log -Append
+    "Error during UI language setup: $($_.Exception.Message)" | Out-File -FilePath $log -Encoding utf8 -Append
 }
 
 try {
@@ -34,11 +32,11 @@ try {
         Set-WinSystemLocale -SystemLocale "fr-FR"
         "System locale set to fr-FR" | Out-File -FilePath $log -Append
     } else {
-        "Set-WinSystemLocale not available" | Out-File -FilePath $log -Append
+        "Set-WinSystemLocale not available" | Out-File -FilePath $log -Encoding utf8 -Append
     }
 }
 catch {
-    "Error during system locale setup: $($_.Exception.Message)" | Out-File -FilePath $log -Append
+    "Error during system locale setup: $($_.Exception.Message)" | Out-File -FilePath $log -Encoding utf8 -Append
 }
 
-"=== Script finished $(Get-Date) ===" | Out-File -FilePath $log -Append
+"=== Script finished $(Get-Date) ===" | Out-File -FilePath $log -Encoding utf8 -Append

@@ -17,7 +17,7 @@ This README explains how to set up a Windows development environment for C and C
   - [Setting up a Windows Sandbox for Safe Testing](#setting-up-a-windows-sandbox-for-safe-testing)  
   - [Launching Windows Sandbox](#launching-windows-sandbox)  
   - [Windows Sandbox configuration (`WindowsSandboxConfigFile.wsb`)](#windows-sandbox-configuration-windowssandboxconfigfilewsb)  
-  - [Startup initialization script (`setup-lang.ps1`)](#startup-initialization-script-setup-langps1)  
+  - [Startup initialization script (`setup-lang.ps1`, `mute-audio.ps1`)](#startup-initialization-scripts-setup-langps1-mute-audiops1)
 
 ---
 
@@ -298,9 +298,10 @@ function gcmsg { git commit -m $args }
 
 When developing or testing programs that should not run on your main system, it is recommended to use an isolated environment. Windows Sandbox provides a disposable virtual machine that resets every time it closes.
 
-The repository includes two files in the `windows-sandbox` folder that demonstrate how to prepare such an environment:
+The repository includes 3 files in the `windows-sandbox` folder that demonstrate how to prepare such an environment:
 
 - `WindowsSandboxConfigFile.wsb`  
+- `mute-audio.ps1`
 - `setup-lang.ps1`
 
 These files show how to configure a sandbox, map a working folder, disable networking, and perform automated initialization steps.
@@ -327,21 +328,40 @@ This file defines how the sandbox behaves on startup. It demonstrates how to:
 
 - Map a host directory into the sandbox (example path: `C:\path\to\my\host-folder`)  
 - Disable networking for isolation  
-- Automatically run a PowerShell script when the sandbox launches  
+- Automatically run two PowerShell scripts when the sandbox launches  
 - Open Explorer and PowerShell inside the mapped folder for immediate testing  
 
 Paths can be adapted to any directory you use for testing.
 
 ---
 
-### Startup initialization script (`setup-lang.ps1`)
+### Startup initialization scripts (`setup-lang.ps1`, `mute-audio.ps1`)
 
-The PowerShell script referenced by the `.wsb` file runs automatically when the sandbox starts. In this repository, it is used as an example of:
+The PowerShell scripts referenced by the `.wsb` file run automatically when the sandbox starts. In this repository, it is used as an example of:
 
-- Performing initial setup tasks  
+- Performing initial setup tasks
 - Configuring system or user preferences inside the sandbox  
 - Writing a log file to the mapped folder  
 - Preparing a reproducible environment before testing  
 
 You can replace its content with any initialization logic needed for your own environment.
 
+#### `setup-lang.ps1`
+
+This script configures the sandbox’s language and input settings at startup.
+
+Specifically, it:
+- Creates a custom user language list
+- Adds French (`fr-FR`), Japanese (`ja-JP`), and English (`en-US`) input methods
+- Applies the language list for the current sandbox user
+- Optionally sets the UI language and system locale
+- Writes status information and errors to a log file in the mapped folder
+
+#### `mute-audio.ps1`
+
+This script silences audio output immediately after the sandbox launches.
+
+It:
+- Sends simulated “Volume Down” key presses to the system
+- Reduces the master audio volume to zero without modifying host settings
+- Ensures the sandbox starts silently, which is useful for automated testing or scripting

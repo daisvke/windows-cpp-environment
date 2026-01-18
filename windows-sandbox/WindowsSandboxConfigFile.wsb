@@ -25,14 +25,16 @@
 
     <!--
       PowerShell script chain:
+        0. Runs mute-audio.ps1
         1. Runs setup-lang.ps1
         2. Waits 2s
-        3. Opens Explorer in 'SandboxFolder'
-        4. Opens PowerShell in same folder
+        3. Opens Explorer at the specified path
+        4. Opens PowerShell at the specified path
 
       (Do not insert comments inside the <Command> element — it will break execution)
     -->
-    <Command>powershell -NoProfile -ExecutionPolicy Bypass -Command "&amp; 'C:\Users\WDAGUtilityAccount\Desktop\SandboxFolder\setup-lang.ps1'; Start-Sleep -Seconds 2; Start-Process explorer.exe 'C:\Users\WDAGUtilityAccount\Desktop\SandboxFolder'; Start-Process powershell.exe -ArgumentList '-NoExit','-Command','cd \"C:\Users\WDAGUtilityAccount\Desktop\SandboxFolder\example-project\"'"</Command>
+
+    <Command>powershell -NoProfile -ExecutionPolicy Bypass -Command "&amp; 'C:\Users\WDAGUtilityAccount\Desktop\WindowsSandbox\mute-audio.ps1'; &amp; 'C:\Users\WDAGUtilityAccount\Desktop\WindowsSandbox\setup-lang.ps1'; Start-Sleep -Seconds 2; Start-Process explorer.exe 'C:\Users\WDAGUtilityAccount\Desktop\WindowsSandbox\winsvc\'; Start-Process powershell.exe -ArgumentList '-NoExit','-Command','cd \"C:\Users\WDAGUtilityAccount\Desktop\WindowsSandbox\winsvc\"'"</Command>
 
   </LogonCommand>
 
